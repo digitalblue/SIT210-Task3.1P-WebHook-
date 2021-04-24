@@ -20,13 +20,13 @@ void setup() {
 void loop() {
     // Read temp and humidity 
     float h = dht.getHumidity();
-	float t = dht.getTempCelcius();
+    float t = dht.getTempCelcius();
 	
-	// Check if any reads failed and exit early (to try again).
-	if (isnan(h) || isnan(t)) {
-		Serial.println("Failed to read from DHT sensor!");
-		return;
-	}
+    // Check if any reads failed and exit early (to try again).
+    if (isnan(h) || isnan(t)) {
+	    Serial.println("Failed to read from DHT sensor!");
+	    return;
+    }
     
     digitalWrite(led, HIGH); // Turn ON the LED
     Particle.publish("temp", String::format("{\"hum\": %4.2f, \"temp\": %4.2f}", h, t), PRIVATE);
